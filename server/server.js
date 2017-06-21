@@ -8,18 +8,17 @@ const express = require('express'),
 var server = http.createServer(app);
 var io = socketIO(server);
 
-app.use(express.static(path.join(__dirname, '/../public')));
+app.use(express.static(path.join(__dirname, '/../public')))
 
 io.on('connection', (socket) => {
   console.log('New User Connected');
 
-  socket.emit('newMessage', {
-    from: "Tim",
-    text: "Hey can you come in at 7 instead?",
-    createdAt: 23411
-  });
-
   socket.on('createMessage', function(message) {
+    io.emit('newMessage', {
+      from: message.from,
+      text: message.text,
+      createdAt: new Date().getTime()
+    })
     console.log(`createMessage`, message);
   });
 
