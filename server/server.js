@@ -19,17 +19,19 @@ io.on('connection', (socket) => {
   socket.broadcast.emit('newMessage', generateMessage('Admin','New user joined'));
 
 
-  socket.on('createMessage', function(message) {
-    io.emit('newMessage', generateMessage(message.from,message.text));
+  socket.on('createMessage', (message, cb) => {
+    console.log(`createMessage`, message);
+    io.emit('newMessage', generateMessage(message.from, message.text));
+    cb('This is from the server');
+    // callback();
     // socket.broadcast.emit('newMessage', {
     //   from: message.from,
     //   text: message.text,
     //   createdAt: new Date().getTime()
     // });
-    console.log(`createMessage`, message);
   });
 
-  socket.on('disconnect', function () {
+  socket.on('disconnect', ()  => {
     console.log('Client has disconnected');
   });
 
@@ -37,6 +39,6 @@ io.on('connection', (socket) => {
 });
 
 
-server.listen(port, function () {
+server.listen(port, ()  => {
   console.log(`App listening on port ${port}`);
 });
