@@ -4,19 +4,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Chat Node</title>
+   <link rel="stylesheet" href="/css/styles.css">
   </head>
-  <body>
-    <p>Welcome to Chat Node</p>
+  <body class="chat">
 
-    <section>
-      <ol id="messages"></ol>
-    </section>
+    <div class="chat__sidebar">
+      <h3>People</h3>
+      <div id="users"></div>
+    </div>
 
-    <form id="message-form" class="">
-      <input type="text" name="message" placeholder="Message goes here" />
-      <button type="submit" name="button">Send</button>
-    </form>
-    <button id="send-location" name="button">Send Location</button>
+    <div class="chat__main">
+      <ol class="chat__messages"id="messages"></ol>
+
+      <div class="chat__footer">
+        <form id="message-form" class="">
+          <input autofocus autocomplete="off" type="text" name="message" placeholder="Message goes here" />
+          <button type="submit" name="button">Send</button>
+        </form>
+        <button id="send-location" name="button">Send Location</button>
+      </div>
+
+    </div>
+
+
 
 
 
